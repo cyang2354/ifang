@@ -1,0 +1,37 @@
+
+<div class="container">
+  <div class="row">
+    <h1>Seattle {{ home.Bedrooms }} beds {{ home.Bathrooms }} baths {{ home.PropertySubType }}</h1> <!--subtype or propertyType?-->
+    <h3>{{ home.ListPrice }}$</h3>
+  </div>
+  <div class="row">
+    <div class="col-lg-8">
+      <ng-galleria source="images"></ng-galleria>
+    </div>
+
+    <div class="col-lg-4">
+      <h2>Agent</h2>
+      <ul>
+        <li>Phone: {{ home.OfficePhone }}</li>
+        <li>Email: {{ home.AgentEmail }}</li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <h2>Description</h2>
+      <p>{{ home.PropertygDescription }}</p>
+
+      <h2>Facts</h2>
+      <ul>
+        <li>Lot size: {{ home.LotSize | number }} sqft</li>
+        <li>Kitchen: {{ home.kitchen_desc }}</li>
+        <li>Style: {{ home.style }}</li>
+        <li>Cooling system: {{ home.cooling_system }}</li>
+        <li>Heating system: {{ home.heating_system }}</li>
+        <li>Number of stories: {{ home.num_of_stories }}</li>
+        <li>Parking: {{ home.parking_desc }}</li>
+      </ul>
+    </div>
+  </div>
+</div>

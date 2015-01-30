@@ -1,0 +1,99 @@
+<div class="container">
+
+  <style type="text/css">
+  </style>
+
+  <form action="">
+    <fieldset>
+      <legend>Search Conditions:</legend>
+
+    <div class="row">
+        <div class="col-lg-12">
+        <label>Area:</label>
+          <div class="btn-group">
+			<!--
+            <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Los Angeles'" uncheckable>Los Angeles</label>
+            <label class="btn btn-primary" ng-model="radioModel" btn-radio="'San Francisco'" uncheckable>San Francisco</label>
+            <label class="btn btn-primary" ng-model="radioModel" btn-radio="'San Diego'" uncheckable>San Diego</label>
+			-->
+            <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Seattle'" uncheckable>Seattle</label>
+			<!--
+            <label class="btn btn-primary" ng-model="radioModel" btn-radio="'NewYork'" uncheckable>NewYork</label>
+            <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Boston'" uncheckable>Boston</label>
+            <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Chicago'" uncheckable>Chicago</label>
+            <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Houston'" uncheckable>Houston</label>
+            <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Philadelphia'" uncheckable>Philadelphia</label>
+			<label class="btn btn-primary" ng-model="radioModel" btn-radio="'washingtondc'" uncheckable>Washington D.C.</label>
+			-->
+          </div>
+        </div>
+    </div>
+
+    <br>
+	<div class="row">
+        <div class="col-lg-4">
+        <label>Career Years</label>
+        <select>
+		  <option value="Any">Any</option>
+          <option value="less than 1 year">less than 1 year</option>
+          <option value="1-3 years">1-3 years</option>
+          <option value="3-5 years">3-5 years</option>
+          <option value="more than 5 years">more than 5 years</option>
+        </select>
+       </div>
+ 
+
+      <div class="col-lg-4">
+        <label>Review Score</label>
+        <select>
+		  <option value="Any">Any</option>
+          <option value=">4">>4</option>
+          <option value=">3">>3</option>
+          <option value=">2">>2</option>
+          <option value=">1">>1</option>
+        </select>
+      </div>
+	</div>
+
+	<br>
+	<div class="row">
+      <div class="col-lg-4">
+        <label>Language Speak</label>
+		<input type="checkbox" name="language" value="Any"  /> Any
+		<input type="checkbox" name="language" value="English"  /> English
+		<input type="checkbox" name="language" value="Mandarin"  /> Mandarin
+		<input type="checkbox" name="language" value="Cantonese"  /> Cantonese
+		<input type="checkbox" name="language" value="Others"  /> Others
+      </div>
+	</div>  
+
+    </fieldset>
+  </form>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">Agents</h1>
+      <table class="table table-hover">
+        <thead><tr>
+          <th>Name</th>
+		  <th class="hidden-xs">Email</th>
+          <th class="hidden-xs">City Area</th>
+		  <th class="hidden-xs">Business Name</th>
+          <th class="hidden-xs">Career Year</th>
+          <th>Reviews</th>
+        </tr></thead>
+        <tbody><tr ng-repeat="agent in agents">
+          <td style="vertical-align:middle">
+            <a href="/agents/123"><img ng-src="{{agent.imageUrl}}" class="img-thumbnail" width="100"></a>
+            <a href="/agents/123">{{ agent.firstName }}   {{ agent.lastName }} </a>
+          </td>
+          <td class="hidden-xs" style="vertical-align:middle">{{ agent.Email }}</td>
+          <td class="hidden-xs" style="vertical-align:middle">{{ agent.CityArea }}</td>
+          <td class="hidden-xs" style="vertical-align:middle">{{ agent.businessName }}</td>
+          <td class="hidden-xs" style="vertical-align:middle">{{ agent.careerYears }}</td>
+          <td style="vertical-align:middle">{{ agent.reviews }}</td>
+        </tr></tbody>
+      </table>
+    </div>
+  </div>
+</div>

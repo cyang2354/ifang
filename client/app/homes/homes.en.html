@@ -1,0 +1,145 @@
+<div class="container">
+
+  <style type="text/css">
+  </style>
+
+  <form action="">
+    <fieldset>
+      <div class="row">
+        <div class="col-lg-12">
+        <label>Area:</label>
+          <div class="btn-group">
+            <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Los Angeles'" uncheckable>Los Angeles</label>
+            <label class="btn btn-primary" ng-model="radioModel" btn-radio="'San Francisco'" uncheckable>San Francisco</label>
+            <label class="btn btn-primary" ng-model="radioModel" btn-radio="'San Diego'" uncheckable>San Diego</label>
+            <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Seattle'" uncheckable>Seattle</label>
+            <label class="btn btn-primary" ng-model="radioModel" btn-radio="'NewYork'" uncheckable>NewYork</label>
+            <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Boston'" uncheckable>Boston</label>
+            <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Chicago'" uncheckable>Chicago</label>
+            <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Houston'" uncheckable>Houston</label>
+            <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Philadelphia'" uncheckable>Philadelphia</label>
+          </div>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="row">
+        <div class="col-lg-3">
+          <label>Home Status:</label>
+          <select>
+            <option value="For Sale">For Sale</option>
+            <option value="For Rent">For Rent</option>
+            <option value="Auction">Auction</option>
+          </select>
+        </div>
+
+        <div class="col-lg-3">
+          <label>Property Type:</label>
+          <select>
+            <option value="Single Family House">Single Family House</option>
+            <option value="Town House">Town House</option>
+            <option value="Condo">Condo</option>
+          </select>
+        </div>
+
+        <div class="col-lg-3">
+          <label>Price(CNY)</label>
+          <select>
+            <option value="Less than 1M">Less than 1M</option>
+            <option value="1-3M">1-3M</option>
+            <option value="3-5M">3-5M</option>
+            <option value="5-7M">5-7M</option>
+            <option value="7-9M">7-9M</option>
+            <option value="9-10M">9-10M</option>
+            <option value="More than 10M">More than 10M</option>
+          </select>
+        </div>
+
+        <div class="col-lg-3">
+        <label>Beds</label>
+        <select>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="More than 10">More than 10</option>
+        </select>
+       </div>
+      </div>
+
+      <br>
+
+      <div class="row">
+       <div class="col-lg-4">
+        <label>Building Area</label>
+        <select>
+          <option value="Less than 200 Square Meter">Less than 200 Square Meter</option>
+          <option value="200-300 Square Meter">200-300 Square Meter</option>
+          <option value="300-400 Square Meter">300-400 Square Meter</option>
+          <option value="400-500 Square Meter">400-500 Square Meter</option>
+          <option value="More than 500 Square Meter">More than 500 Square Meter</option>
+        </select>
+       </div>
+
+       <div class="col-lg-4">
+        <label>Lot Size</label>
+        <select>
+          <option value="Less than 500 Square Meter">Less than 500 Square Meter</option>
+          <option value="500-1000 Square Meter">500-1000 Square Meter</option>
+          <option value="1000-1500 Square Meter">1000-1500 Square Meter</option>
+          <option value="1500-2000 Square Meter">1500-2000 Square Meter</option>
+          <option value="More than 2000 Square Meter">More than 2000 Square Meter</option>
+        </select>
+       </div>
+
+       <div class="col-lg-4">
+        <label>Built Year</label>
+        <select>
+          <option value="No limit">No limit</option>
+          <option value="New">New</option>
+          <option value="1-3 years">1-3 years</option>
+          <option value="3-5 years">3-5 years</option>
+          <option value="5-10 years">5-10 years</option>
+          <option value="10-20 years">10-20 years</option>
+          <option value="20-30 years">20-30 years</option>
+          <option value="More than 37 years">More than 37 years</option>
+        </select>
+       </div>
+      </div>
+    </fieldset>
+  </form>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">Homes</h1>
+      <table class="table table-hover">
+        <thead><tr>
+          <th>Property Address</th>
+          <th class="hidden-xs">Property Type</th>
+          <th class="hidden-xs">Bed/Bath</th>
+          <th class="hidden-xs">Size</th>
+          <th class="hidden-xs">Year Built</th>
+          <th>Price</th>
+        </tr></thead>
+        <tbody><tr ng-repeat="home in homes">
+          <td style="vertical-align:middle">
+            <a href="/homes/123"><img ng-src="{{home.CoverPhoto[1]}}" class="img-thumbnail" width="100"></a>
+            <a href="/homes/123">{{ home.City }}, {{ home.State }}, {{ home.ZipCode }} </a>
+          </td>
+          <td class="hidden-xs" style="vertical-align:middle">{{ home.PropertySubType }}</td>
+          <td class="hidden-xs" style="vertical-align:middle">{{ home.Bedrooms }} bed, {{ home.Bathrooms }} bath</td>
+          <td class="hidden-xs" style="vertical-align:middle">{{ home.SquareFootage | number }}</td>
+          <td class="hidden-xs" style="vertical-align:middle">{{ home.YearBuilt }}</td>
+          <td style="vertical-align:middle">${{ home.ListPrice }}</td>
+        </tr></tbody>
+      </table>
+    </div>
+  </div>
+</div>

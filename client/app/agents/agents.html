@@ -1,0 +1,148 @@
+<div class="container">
+
+  <form action="">
+    <fieldset>
+      <legend>搜索条件:</legend>
+
+    <div class="row">
+        <div class="col-lg-12">
+        <label>地区:</label>
+          <div class="btn-group">
+			<!--
+            <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Los Angeles'" uncheckable>Los Angeles</label>
+            <label class="btn btn-primary" ng-model="radioModel" btn-radio="'San Francisco'" uncheckable>San Francisco</label>
+            <label class="btn btn-primary" ng-model="radioModel" btn-radio="'San Diego'" uncheckable>San Diego</label>
+			-->
+            <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Seattle'" uncheckable>西雅图</label>
+			<!--
+            <label class="btn btn-primary" ng-model="radioModel" btn-radio="'NewYork'" uncheckable>NewYork</label>
+            <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Boston'" uncheckable>Boston</label>
+            <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Chicago'" uncheckable>Chicago</label>
+            <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Houston'" uncheckable>Houston</label>
+            <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Philadelphia'" uncheckable>Philadelphia</label>
+			<label class="btn btn-primary" ng-model="radioModel" btn-radio="'washingtondc'" uncheckable>Washington D.C.</label>
+			-->
+          </div>
+        </div>
+    </div>
+
+      <br>
+
+	<div class="row">
+        <div class="col-lg-4">
+        <label>从业时间 : </label>
+        <select>
+		  <option value="Any">不限</option>
+		  <option value=">5">>5年</option>
+		  <option value=">3">>3年</option>
+          <option value=">1">>1年</option>
+        </select>
+       </div>
+	   
+	   <div class="col-lg-4">
+        <label>成交数量 : </label>
+        <select>
+		  <option value="Any">不限</option>
+          <option value=">20">>20</option>
+          <option value=">10">>10</option>
+          <option value=">5">>5</option>
+        </select>
+       </div>
+	  
+	 
+      <div class="col-lg-4">
+        <label>评价 : </label>
+        <select>
+		  <option value="Any">不限</option>
+          <option value=">4">>4星</option>
+        </select>
+      </div>
+	</div>
+ 
+	<br>
+	<div class="row">
+      <div class="col-lg-5">
+        <label>支持语言 : </label>
+		<input type="checkbox" name="language" value="Any" checked  /> 不限
+		<input type="checkbox" name="language" value="English"  /> 英语
+		<input type="checkbox" name="language" value="Mandarin"  /> 普通话
+		<input type="checkbox" name="language" value="Cantonese"  /> 粤语
+      </div>
+	</div>  
+	  
+    </fieldset>
+  </form>
+
+  <br>
+  
+  <div class="row">
+    <div class="col-lg-9">
+      <h1>房产经纪人</h1>
+	  <br>
+      <table class="table table-hover">
+		<thead>
+		  <tr>
+			<th> </th>
+			<th>个人信息 <a href="" ng-click="predicate='firstName'; reverse=!reverse; nameShow=!nameShow"><span class="glyphicon glyphicon-arrow-up" ng-show="!nameShow"></span><span class="glyphicon glyphicon-arrow-down" ng-show="nameShow"></span></a></th>
+			<th>支持语言</th>
+			<th>评价 <a href="" ng-click="predicate='reviews'; reverse=!reverse; reviewShow=!reviewShow"><span class="glyphicon glyphicon-arrow-up" ng-show="!reviewShow"></span><span class="glyphicon glyphicon-arrow-down" ng-show="reviewShow"></span></a></th>
+          </tr>
+		</thead>
+		
+        <tbody>
+		  <tr dir-paginate="agent in agents | itemsPerPage: 10  | orderBy:predicate:reverse">
+          <td class="col-lg-3 middleAlign">
+            <a href="/agents/{{agent._id}}">
+				<span ng-show="{{agent.imageUrl}}"><img ng-src="{{agent.imageUrl}}" class="img-thumbnail" width="150"></span>
+				<span ng-show="{{!agent.imageUrl}}"><img ng-src="http://www.finearttips.com/wp-content/uploads/2010/05/avatar.jpg" class="img-thumbnail" width="150"></span>		
+			</a>
+            
+          </td>
+		  <td class="col-lg-4"><a href="/agents/{{agent._id}}"><span class="name">{{ agent.firstName }}   {{ agent.lastName }} </span></a>
+			<div>{{ agent.businessName }} </div>
+			<br>
+			<div>{{ agent.businessEmail }}</div>
+		  </td>
+		  <td class="col-lg-3 middleAlign hidden-xs"><span ng-show={{agent.englishSpeak}}>英语</span> <span ng-show={{agent.mandarinSpeak}}>普通话</span> <span ng-show={{agent.cantoneseSpeak}}>粤语</span></td>
+          <td class="col-lg-4 middleAlign">
+		  <img ng-src="https://christianshelfesteem.files.wordpress.com/2014/06/5-stars.png"  width="100">
+		  {{ agent.reviews }}</br>
+		  {{ agent.lastYearTrasactions}} Recent Sales</td>
+          </tr>
+		</tbody>
+      </table>
+	
+    </div>
+
+	<div class="sideContent">
+		<h4 class="page-header">选择经纪人的建议</h4>
+		<br>
+		<ul style="margin-left:-30px;">
+		<li>问朋友，有没有推荐的经纪人</li>		
+		<br>
+		<li>网上看经纪人的评分和点评</li>		
+		<br>
+		<li>面试至少三个经纪人</li>		
+		<br>
+		<li>问经纪人的问题	</li>
+		<br>
+		<span class="questions">去年经手了多少个交易？</span>
+		<br>
+		<span class="questions">在我的目标社区内经手了多少</span>
+		<span class="questions">交易？</span>
+		<br>
+		<span class="questions">现在正在代理几个客人？</span>
+		<br>
+		<span class="questions">反应时间有多快？</span>
+		<br>
+		<span class="questions">给我三个最近的客户的联系</span>
+		<span class="questions">方式？	</span>	<br>
+		<br>
+		<li>如购买法拍屋(Foreclosure)和短售屋(ShortSale)，最好选有过此类房屋交易经验的经纪人</li>
+		</ul>
+	</div>
+  </div>
+  <div class="col-lg-12">
+    <dir-pagination-controls boundary-links="true" template-url="bower_components/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
+  </div>
+</div>

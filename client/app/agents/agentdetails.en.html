@@ -1,0 +1,32 @@
+
+<div class="container">
+  <div class="row">
+	<div  class="col-lg-5">
+		<h1><img ng-src="{{agent.imageUrl}}" class="img-thumbnail" width="150">
+		{{ agent.firstName }} {{ agent.middleName }} {{ agent.lastName }}</h1>
+		<br>
+		<div>
+		email: {{ agent.Email }}	<br>
+		phone: {{ agent.Phone }}
+		</div>
+		<div></div>
+	</div>
+	
+	<div class="col-lg-5">
+		<h2>Agent Information</h2>
+		<br>
+		<ul>
+			<li>Name: {{ agent.firstName }} {{ agent.lastName }}</li>
+			<li>Chinese Name: {{ agent.chineseName }}</li>
+			<li>Area: {{ agent.CityArea }}</li>
+			<li>qq: {{ agent.qq }}</li>
+			<li>Wechat: {{ agent.wechat }}</li>
+			<li>Language Speaking: <span ng-show={{agent.englishSpeak}}>English</span> <span ng-show={{agent.mandarinSpeak}}>Mandarin</span> <span ng-show={{agent.cantoneseSpeak}}>Cantonese</span></li>
+			<li>Business Name: {{ agent.businessName }}</li>
+			<li>Career Years: {{ agent.careerYears }}</li>
+			<li>Website: {{ agent.webPage }}</li>
+		</ul>
+	</div>
+  </div>
+  
+</div>

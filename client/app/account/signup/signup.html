@@ -1,0 +1,82 @@
+<div class="container signup">
+  <div class="row authform">
+    <div>
+      <h1>注册</h1>
+    </div>
+    <div>
+      <form class="form" name="form" ng-submit="register(form)" novalidate>
+
+        <div class="form-group" ng-class="{ 'has-success': form.name.$valid && submitted,
+                                            'has-error': form.name.$invalid && submitted }">
+          <label>姓名</label>
+
+          <input type="text" name="name" class="form-control" ng-model="user.name"
+				 placeholder='请输入您的名字 比如： Ming Wang'
+                 ng-minlength="5"
+                 required/>
+          <p class="help-block" ng-show="form.name.$error.required && form.name.$touched">
+            姓名为必填项
+          </p>
+          <p class="help-block"
+             ng-show="(form.name.$error.minlength || form.name.$error.required) && form.name.$touched">
+            姓名必须至少包含5个字母。
+          </p>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-success': form.email.$valid && submitted,
+                                            'has-error': form.email.$invalid && submitted }">
+          <label>电子邮件</label>
+
+          <input type="email" name="email" class="form-control" ng-model="user.email"
+				 placeholder='请输入您的邮箱 比如： abc@example.com'
+                 required
+                 mongoose-error/>
+          <p class="help-block" ng-show="form.email.$error.email && form.email.$touched">
+            请输入有效电子邮箱地址
+          </p>
+          <p class="help-block" ng-show="form.email.$error.required && form.email.$touched">
+            你的电子邮箱地址是？
+          </p>
+          <p class="help-block" ng-show="form.email.$error.mongoose">
+            {{ errors.email }}
+          </p>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-success': form.password.$valid && submitted,
+                                            'has-error': form.password.$invalid && submitted }">
+          <label>密码</label>
+
+          <input type="password" name="password" class="form-control" ng-model="user.password"
+				 placeholder='请输入您的密码, 至少包含6个字母或数字' 
+                 ng-minlength="6"
+                 required
+                 mongoose-error/>
+          <p class="help-block"
+             ng-show="(form.password.$error.minlength || form.password.$error.required) && form.password.$touched">
+            密码必须至少包含6个字母或数字。
+          </p>
+          <p class="help-block" ng-show="form.password.$error.mongoose">
+            {{ errors.password }}
+          </p>
+        </div>
+
+        <div>
+			<input type="checkbox"
+                 ng-model="checked"
+                 name="agree-term"/>
+			<span>我接受外居易的<a href="/terms">使用条款</a></span>
+        </div>
+		<br>
+        <div>
+          <button class="btn btn-inverse btn-lg btn-login" type="submit">
+            注册
+          </button>
+          
+		  <span style="float:right;">
+			已有外居易帐号?立即<a class="" href="/login">登陆</a>
+		  </span>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

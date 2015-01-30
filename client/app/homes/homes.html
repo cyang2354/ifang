@@ -1,0 +1,221 @@
+<div class="container homes-list">
+  <form action="">
+    <fieldset>
+      <div class="row">
+        <div class="col-lg-12">
+        <label>地区：</label>
+          <div class="btn-group">
+            <!--
+            <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Los Angeles'" uncheckable>洛杉矶</label>
+            <label class="btn btn-primary" ng-model="radioModel" btn-radio="'San Francisco'" uncheckable>旧金山</label>
+            <label class="btn btn-primary" ng-model="radioModel" btn-radio="'San Diego'" uncheckable>圣地亚哥</label>
+            -->
+            <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Seattle'" uncheckable>西雅图</label>
+            <!--
+            <label class="btn btn-primary" ng-model="radioModel" btn-radio="'NewYork'" uncheckable>纽约</label>
+            <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Boston'" uncheckable>波士顿</label>
+            <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Chicago'" uncheckable>芝加哥</label>
+            <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Houston'" uncheckable>休斯顿</label>
+            <label class="btn btn-primary" ng-model="radioModel" btn-radio="'Philadelphia'" uncheckable>费城</label>
+            -->
+          </div>
+        </div>
+      </div>
+
+      <div class="row home-filter">
+        <div class="col-lg-4">
+          <label>房屋状态 : </label>
+          <select>
+            <option value="No Limit">不限</option>
+            <option value="For Sale">出售</option>
+            <option value="For Rent">出租</option>
+            <option value="Auction">拍卖</option>
+          </select>
+        </div>
+
+        <div class="col-md-4">
+          <label>房屋类型 : </label>
+          <select>
+            <option value="No Limit">不限</option>
+            <option value="Single Family House">独栋别墅</option>
+            <option value="Town House">联排别墅</option>
+            <option value="Condo">公寓楼</option>
+          </select>
+        </div>
+
+        <div class="col-md-4">
+          <label>价格（人民币）: </label>
+          <select>
+            <option value="No Limit">不限</option>
+            <option value="Less than 1M">100万以下</option>
+            <option value="1-3M">100万 到 300万</option>
+            <option value="3-5M">300万 到 500万</option>
+            <option value="5-7M">500万 到 700万</option>
+            <option value="7-9M">700万 到 900万</option>
+            <option value="9-10M">900万 到 1000万</option>
+            <option value="More than 10M">1000万以上</option>
+          </select>
+        </div>
+
+        <div class="col-md-4">
+          <label>卧室数量 : </label>
+          <select>
+            <option value="No Limit">不限</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="More than 10">10间以上</option>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label>建筑面积 : </label>
+          <select>
+            <option value="No Limit">不限</option>
+            <option value="Less than 200 Square Meter">100平方米以下</option>
+            <option value="Less than 200 Square Meter">100平方米 到 200平方米</option>
+            <option value="200-300 Square Meter">200平方米 到 300平方米</option>
+            <option value="300-400 Square Meter">300平方米 到 400平方米</option>
+            <option value="400-500 Square Meter">400平方米 到 500平方米</option>
+            <option value="More than 500 Square Meter">500平方米以上</option>
+          </select>
+        </div>
+
+        <div class="col-md-4">
+          <label>占地面积 : </label>
+          <select>
+            <option value="No Limit">不限</option>
+            <option value="Less than 500 Square Meter">500平方米以下</option>
+            <option value="500-1000 Square Meter">500平方米 到 1000平方米</option>
+            <option value="1000-1500 Square Meter">1000平方米 到 1500平方米</option>
+            <option value="1500-2000 Square Meter">1500平方米 到 2000平方米</option>
+            <option value="More than 2000 Square Meter">2000平方米以上</option>
+          </select>
+        </div>
+
+        <div class="col-md-4">
+          <label>房龄 : </label>
+          <select>
+            <option value="No limit">不限</option>
+            <option value="New">新房</option>
+            <option value="1-3 years">1-3年</option>
+            <option value="3-5 years">3-5年</option>
+            <option value="5-10 years">5-10年</option>
+            <option value="10-20 years">10-20年</option>
+            <option value="20-30 years">20-30年</option>
+            <option value="More than 37 years">37年以上</option>
+          </select>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+	<br>
+
+  <div class="row">
+		<form action="">
+      <div class="col-lg-12">
+		    <label>排序: </label>
+		    <div class="btn-group" data-toggle="buttons">
+				<label class="btn btn-default btn-sort active" ng-model="sortRadio" btn-radio="'featured'">
+				推荐 
+				</label>
+				<label class="btn btn-default btn-sort" ng-model="sortRadio" btn-radio="'listPrice'">
+				价格 
+				</label>
+				<label class="btn btn-default btn-sort" ng-model="sortRadio" btn-radio="'yearBuild'">
+				建筑年代 
+				</label>
+				<label class="btn btn-default btn-sort" ng-model="sortRadio" btn-radio="'squareFootage'">
+				面积 
+				</label>
+		  </div>
+    </form>
+  </div>
+  <br><br>
+{{dict.number[1]}}
+  <div class="row">
+    <div class="col-lg-12">
+      <h3>房源</h3>
+	  <div class="row">
+      <table class="table table-hover">
+      <tbody>
+		<tr dir-paginate="home in homes | itemsPerPage: 10">
+		    <td class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="vertical-align:middle; padding:10px;">
+				<a ng-href="/homes/{{home._id}}"><img ng-src="{{home.wjyImageUrls[0]}}" class="img-thumbnail img-responsive" style="width:100%"></a>
+		    </td>
+		    <td class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+				<!--
+				<div style="padding:10px 20px; font-size:16px; font-weight:bold;">
+				<a ng-href="/homes/{{home._id}}">西雅图{{ home.numberBedroom }}室{{ home.numberBathroom }}卫{{ home.propertyType }}</a>
+				</div>
+				-->
+				<div style="padding:10px 20px; font-size:16px; font-weight:bold;">
+				<a ng-href="/homes/{{home._id}}">西雅图{{dict.number[home.numberBedroom]}}室{{ dict.number[home.numberBathroom] }}卫{{ dict.type[home.propertyType] }}</a>
+				</div>
+				<div style="padding:0 20px;">{{ home.city }}, {{ home.state }}, {{ home.zipcode }}</div>
+			</td>
+			<td class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+    			<div style="padding-top:10px;">房型:　{{ dict.type[home.propertyType] }}</div>
+    			<div style="padding-top:3px;">卧室:　{{ home.numberBedroom }} 间</div>
+    			<div style="padding-top:3px;">卫生间:　{{ home.numberBathroom }} 间</div>
+    			<div style="padding-top:3px;">面积:　{{ home.squareFootage | number }} 平方英尺<br>
+    			<span style="padding-left:45px;">约 {{ home.squareFootage*0.0929 | number:0 }} 平方米</span></div>
+    			<div style="padding-top:3px;">建筑年代:　{{ home.yearBuild }} 年</div>
+		    </td>
+		    <td class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+				  <div style="padding-top:10px; font-size:16px; font-weight:bold; color:red;">{{ home.listPrice | currency:"$":0 | FirefoxCurrency  }} 美元</div>
+				  <div style="padding-top:10px; color:#428bca;">约人民币￥{{RMBPrice(home.listPrice) | RMBcurrency | FirefoxCurrency }}万</div>
+			</td>
+		</tr>
+      </tbody>
+      </table>
+	  </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <dir-pagination-controls boundary-links="true" template-url="bower_components/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
+    </div>
+  </div>
+
+  <!--
+  <div class="row">
+    <div class="col-lg-12">
+      <h3>房源</h3>
+      <table class="table table-hover">
+        <thead><tr>
+		  <th></th>
+          <th>地址</th>
+          <th class="hidden-xs">房型</th>
+          <th class="hidden-xs">卧室/卫生间</th>
+          <th class="hidden-xs"><a href="" ng-click="predicate='squareFootage'; reverse=!reverse">面积</a></th>
+          <th class="hidden-xs"><a href="" ng-click="predicate='yearBuild'; reverse=!reverse">建筑年代</a></th>
+          <th><a href="" ng-click="predicate='listPrice'; reverse=!reverse">价格</a></th>
+        </tr></thead>
+        <tbody><tr dir-paginate="home in homes | itemsPerPage: 10 | orderBy:predicate:reverse">
+          <td style="vertical-align:middle">
+            <a ng-href="/homes/{{home._id}}"><img ng-src="{{home.wjyImageUrls[0]}}" class="img-thumbnail" width="100"></a>
+		  </td>
+		  <td class="hidden-xs" style="vertical-align:middle">
+            <a ng-href="/homes/{{home._id}}">{{ home.city }}, {{ home.state }}, {{ home.zipcode }} </a>
+          </td>
+          <td class="hidden-xs" style="vertical-align:middle">{{ home.propertyType }}</td>
+          <td class="hidden-xs" style="vertical-align:middle">{{ home.numberBedroom }} bed, {{ home.numberBathroom }} bath</td>
+          <td class="hidden-xs" style="vertical-align:middle">{{ home.squareFootage | number }}</td>
+          <td class="hidden-xs" style="vertical-align:middle">{{ home.yearBuild }}</td>
+          <td style="vertical-align:middle">${{ home.listPrice }}</td>
+        </tr></tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col-lg-12">
+    <dir-pagination-controls boundary-links="true" template-url="bower_components/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
+  </div>
+  -->
+</div>

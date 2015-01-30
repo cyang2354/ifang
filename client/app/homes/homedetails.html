@@ -1,0 +1,61 @@
+
+<div class="container">
+
+  <div class="row">
+    <h1>西雅图{{ dict.number[home.numberBedroom] }}室{{ dict.number[home.numberBathroom] }}卫{{ dict.type[home.propertyType] }}</h1>
+    <h3>{{home.listPrice | currency:"美元$":0 | FirefoxCurrency }}  |  约人民币￥{{RMBPrice(home.listPrice) | RMBcurrency | FirefoxCurrency }}万</h3>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+      <ng-galleria source="slides"></ng-galleria>
+    </div>
+	
+
+    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4">
+		<h2 style="padding:0 0 0 25px;">经纪人</h2>
+		<div class="row"  style="padding:10px;" ng-repeat="agent in agents">
+			<!--
+			<div class="col-lg-4" style="vertical-align:middle;">
+				<a href="/agents/{{agent._id}}">
+					<div ng-show="{{agent.imageUrl}}"><img ng-src="{{agent.imageUrl}}" class="img-thumbnail" width="200"></div>
+					<div ng-show="{{!agent.imageUrl}}"><img ng-src="http://www.finearttips.com/wp-content/uploads/2010/05/avatar.jpg" class="img-thumbnail" width="200"></div>
+				</a>
+			</div>
+			-->
+			<div class="col-lg-12" style="margin-top:-5px; padding-bottom:10px;">
+			    <ul>
+					<li style="font-size:16px; font-weight:bold;"><a href="/agents/{{agent._id}}">{{ agent.firstName }} {{ agent.lastName }}</a></li>
+					<li>{{agent.businessName}}</li>
+					<li>电话:
+						<a href ng-click="showPhone = !showPhone"><span ng-show="!showPhone">显示</span></a>
+						<span class="procedure-details" ng-show="showPhone">+{{ agent.businessPhone1.countryCode }} {{ agent.businessPhone1.number }}</span>
+					</li>
+					<li>邮箱:
+						<a href ng-click="showEmail = !showEmail"><span ng-show="!showEmail">显示</span></a>
+						<span class="procedure-details" ng-show="showEmail">{{ agent.businessEmail }}</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+    </div>
+	
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <h2>房屋介绍</h2>
+      <p>{{ home.propertyDescription }}</p>
+
+      <h2>详细信息</h2>
+      <ul>
+        <li>占地面积： {{ home.lotSize | number }} sqft</li>
+        <li>厨房： {{ home.kitchenDescription }}</li>
+        <li>风格： {{ home.style }}</li>
+        <li>空调系统： {{ home.coolingSystem }}</li>
+        <li>供暖系统： {{ home.heatingSystem }}</li>
+        <li>层数： {{ home.numberStories }}</li>
+        <li>车库： {{ home.parkingDescription }}</li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,177 @@
+
+<div class="container">
+  <div class="row" >
+ 
+	<div class="col-lg-3">
+		<h1>
+		<div ng-show="{{agent.imageUrl}}"><img ng-src="{{agent.imageUrl}}" class="img-thumbnail" width="200"></div>
+		<div ng-show="{{!agent.imageUrl}}"><img ng-src="http://www.finearttips.com/wp-content/uploads/2010/05/avatar.jpg" class="img-thumbnail" width="200"></div>
+		<br>
+		<div>{{ agent.firstName }} {{ agent.middleName }} {{ agent.lastName }}</div>
+		</h1>
+		<br>
+		<div>
+		电子邮箱: {{ agent.businessEmail }}<br>
+		电话： +{{ agent.contactPhone1.countryCode }} {{ agent.contactPhone1.number }}
+		</div>
+		<div></div>
+	</div>
+         
+	<div class="col-lg-5">
+		<h2>经纪人信息</h2>
+		<br>
+		
+		<img ng-src="https://christianshelfesteem.files.wordpress.com/2014/06/5-stars.png"  width="100">
+		  {{ agent.reviews }} 0个评价</br>
+		<br>  
+		
+		<ul>
+			<li>姓名: {{ agent.firstName }} {{ agent.lastName }}</li>
+			<li>中文名： {{ agent.chineseName }}</li>
+			<li>代理区域： {{ agent.CityArea }}</li>
+			<li>qq: {{ agent.qq }}</li>
+			<li>微信: {{ agent.wechat }}</li>
+			<li>支持语言: <span ng-show="agent.englishSpeak == '1'">英语</span> <span ng-show="agent.mandarinSpeak == '1'">普通话</span> <span ng-show="agent.cantoneseSpeak == '1'">粤语</span></li>
+			<li>从业时间: {{ agent.careerYears }}</li>
+			<li>最近一年成交数量: {{ agent.lastYearTrasactions}} </li>
+			<li>个人网站: {{ agent.webPage }}</li>
+			<li>经纪人公司: {{ agent.businessName }}</li>
+			<li>办公室电话:　+{{ agent.businessPhone1.countryCode }} {{ agent.businessPhone1.number }} </br>
+			<li>办公室地址:　{{agent.businessAddress.line1}} </br>
+						<span style="padding-left:75px;" ng-show={{agent.businessAddress.line2}}>{{agent.businessAddress.line2}} </br></span> 
+						<span style="padding-left:75px;">{{agent.businessAddress.city}} , {{agent.businessAddress.State}} {{agent.businessAddress.zipCode}}</span></br>
+						<span style="padding-left:75px;">{{agent.businessAddress.country}}</span>
+			</li>
+		</ul>
+	</div>
+	
+	
+    <div class="col-lg-4">
+	<h3>联系{{ agent.firstName }} {{ agent.lastName }}</h3>
+  <form class="form" name="form" ng-submit="" novalidate>
+    
+    <div class="well well-sm"><strong><i class="glyphicon glyphicon-asterisk form-control-feedback"></i> 表示此项必填</strong></div>
+    
+    <div class="form-group" ng-class="{ 'has-success': form.email.$valid && submitted,
+                                        'has-error': form.email.$invalid && submitted }">
+      <label>您的名字 <i class="glyphicon glyphicon-asterisk form-control-feedback"></i></label>
+
+      <input type="text" name="name" class="form-control" ng-model="user.name"
+             placeholder='请输入您的名字'
+             required
+             mongoose-error/>
+      <p class="help-block" ng-show="form.name.$error.required && (form.name.$touched || submitted)">
+        您的名字为必填项
+      </p>
+      <p class="help-block" ng-show="form.name.$error.mongoose">
+        {{ errors.name }}
+      </p>
+    </div>
+    
+
+    <div class="form-group" ng-class="{ 'has-success': form.email.$valid && submitted,
+                                        'has-error': form.email.$invalid && submitted }">
+      <label>电子邮箱</label>
+
+      <input type="text" name="email" class="form-control" ng-model="user.email"
+             placeholder='请输入您的邮箱 比如： abc@example.com'
+             ng-blur="checkEmail()"
+             mongoose-error/>
+      <p class="help-block" ng-show="form.email.$error.invalid && (form.email.$touched || submitted)">
+        请填写有效的电子邮箱
+      </p>
+      <p class="help-block" ng-show="form.email.$error.mongoose">
+        {{ errors.name }}
+      </p>
+    </div>
+    
+    <div class="form-group" ng-class="{ 'has-success': form.email.$valid && submitted,
+                                        'has-error': form.email.$invalid && submitted }">
+      <label >您来自(国家区号) <i class="glyphicon glyphicon-asterisk form-control-feedback"></i></label>
+        <select class="form-control" name="country" ng-model="user.country" required>
+          <option value="China" selected>中国(+86)</option>
+          <option value="US">美国(+01)</option>
+        </select>
+        <p class="help-block" ng-show="form.country.$error.required && (form.country.$touched || submitted)">
+          请选择您的电话所在的国家
+        </p>
+        <p class="help-block" ng-show="form.country.$error.mongoose">
+          {{ errors.country }}
+        </p>
+    </div>
+    
+    <div class="form-group" ng-class="{ 'has-success': form.email.$valid && submitted,
+                                        'has-error': form.email.$invalid && submitted }">
+      <label>您的电话 <i class="glyphicon glyphicon-asterisk form-control-feedback"></i></label>
+      <input type="tel" name="phone" class="form-control" ng-model="user.phone"
+             placeholder='请输入您的电话(不含国家区号)'
+             ng-change="checkPhone()"
+             required
+             mongoose-error/>
+      <p class="help-block" ng-show="form.phone.$error.required && (form.phone.$touched || submitted)">
+        您的电话为必填项
+      </p>
+      <p class="help-block" ng-show="form.phone.$error.invalid && (!form.phone.$error.required) && (form.phone.$dirty || submitted)">
+        您的电话号码存在错误，请检查
+      </p>
+      <p class="help-block" ng-show="form.phone.$error.mongoose">
+        {{ errors.phone }}
+      </p>
+    </div>
+    
+    <div class="form-group" ng-class="{ 'has-success': form.email.$valid && submitted,
+                                        'has-error': form.email.$invalid && submitted }">
+      <label>留言 <i class="glyphicon glyphicon-asterisk form-control-feedback"></i></label>
+
+      <textarea rows="6" name="message" class="form-control" ng-model="user.message"
+             placeholder='请输入您的问题，长度为5到200个字'
+             ng-minlength="5"
+             ng-maxlength="200"
+             required
+             mongoose-error/>
+      <p class="help-block" ng-show="form.message.$error.required && (form.message.$touched || submitted)">
+        请输入您的问题
+      </p>
+      <p class="help-block" ng-show="form.message.$error.minlength && (!form.message.$error.required) && (form.message.$dirty || submitted)">
+        您的问题太短，请再详细一些
+      </p>
+      <p class="help-block" ng-show="form.message.$error.maxlength && (!form.message.$error.required) && (form.message.$dirty || submitted)">
+        您的问题太长，请再简短一些
+      </p>
+      <p class="help-block" ng-show="form.name.$error.mongoose">
+        {{ errors.message }}
+      </p>
+    </div>
+    
+    <div class="form-group" ng-class="{ 'has-success': form.email.$valid && submitted,
+                                        'has-error': form.email.$invalid && submitted }">
+      <label>验证问题：我们的网站叫什么名字? (答案是: waijuyi) <i class="glyphicon glyphicon-asterisk form-control-feedback"></i></label>
+
+      <input type="text" name="verification" class="form-control" ng-model="user.verification"
+             placeholder='请输入验证问题的答案'
+             ng-blur="checkVerification()"
+             required
+             mongoose-error/>
+      <p class="help-block" ng-show="form.verification.$error.required && (form.verification.$touched || submitted)">
+        请输入验证问题的答案
+      </p>
+      <p class="help-block" ng-show="form.verification.$error.invalid && (!form.verification.$error.required) && (form.verification.$touched || submitted)">
+        亲，你那么聪明，再试一次肯定能答对！
+      </p>
+      <p class="help-block" ng-show="form.verification.$error.mongoose">
+        {{ errors.verification }}
+      </p>
+    </div>        
+    
+    <div>
+      <button class="btn btn-inverse btn-lg btn-login" type="submit">
+        提交
+      </button>
+    </div>
+  </form>
+	</div>
+	
+  </div>
+  
+  
+</div>

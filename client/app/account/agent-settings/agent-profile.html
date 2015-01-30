@@ -1,0 +1,230 @@
+<div class="container">
+  <div class="row" class="col-sm-5" style="padding-left:10%">
+    <div>
+      <h1>经纪人资料</h1>
+    </div>
+	<br>
+
+    <form class="form" name="form" ng-submit="updateprofile(form)" novalidate>
+
+	<div class="row">
+		<div class="col-sm-5">
+	  
+			<div class="form-group">
+				<label>用户名</label>
+				
+				<span class="userInformation">{{profile.name}}</span>
+			</div>
+
+			<div class="form-group">
+				<label>联系电话　*</label>
+
+				<input type="text" name="phone" class="form-control" placeholder="请输入您的联系电话　比如: 206-888-8888" ng-model="profile.phone" ng-pattern="phonePattern" required/>
+				
+				<div class="error" ng-show="form.$submitted || form.phone.$touched">
+				<div ng-show="form.phone.$error.required">请输入您的联系电话</div>
+				<div ng-show="form.phone.$error.pattern">请输入正确的电话号码格式</div>
+				</div>
+			</div>
+		
+			<div class="form-group">
+				<label>qq号码</label>
+
+				<input type="text" name="qq" class="form-control" placeholder="请输入您的qq号码　比如: 818688888" ng-model="profile.qq" ng-pattern="numberPattern" ng-minlength=6 ng-maxlength=12 />
+				
+				<div class="error" ng-show="form.$submitted || form.qq.$touched">
+				<div class="error" ng-show="form.qq.$error.pattern || form.qq.$error.minlength || form.qq.$error.maxlength">请输入正确的qq号码</div>
+				</div>
+			</div>
+		
+			<div class="form-group">
+				<label>微信号</label>
+
+				<input type="text" name="wechat" class="form-control" placeholder="请输入您的微信号　比如: us_best_agent" ng-model="profile.wechat"/>
+			</div>
+		
+			<div class="form-group">
+				<label>个人网站</label>
+
+				<input type="text" name="webpage" class="form-control" placeholder="请输入您的个人网站　比如: www.waijuyi.com" ng-model="profile.webpage"/>
+			</div>
+			
+			<div class="form-group">
+				<label>支持语言　*</label>
+				<br>
+				<label class="checkbox-inline" ng-repeat="(key, val) in languages" >
+                <input type="checkbox" ng-model="selectedLanguages[val.name]" name="languageSpeak"  ng-checked="selectedLanguages[val.name]"
+                    ng-required="!someSelected(selectedLanguages)">  {{val.name}}
+				</label>
+            
+			   <div class="error" ng-show="form.$submitted || form.languageSpeak.$touched || !someSelected(selectedLanguages)">
+				<div ng-show="!someSelected(selectedLanguages)">请选择至少一种语言</div>
+				</div>
+			</div>	
+			
+			<!--
+			<div class="form-group">
+				<label>最近成交数量　*</label>
+
+				<input type="text" name="recentSales" class="form-control" ng-model="profile.recentSales" ng-minlength="3" required/>
+				
+				<div class="error" ng-show="form.$submitted || form.recentSales.$touched">
+				<div ng-show="form.recentSales.$error.required">请输入您最近一年的成交数量</div>
+				</div>
+			</div>
+			-->
+			
+			<div class="form-group">
+				<label>最近成交数量　*</label>
+				<br>
+				<div class="row">
+					<div class="col-sm-5" align="center">年份</div>
+					<div class="col-sm-1"> </div>
+					<div class="col-sm-5" align="center">成交量</div>
+				</div>
+				<div class="row" style="padding:5px;" data-ng-repeat="recentSale in recentSales">
+					<div class="col-sm-5">
+					<!--
+					<input type="number" class="form-control"  ng-model="recentSale.year" name="recentSalesYear">
+					-->
+					<select class="form-control" name="recentSalesYear" ng-model="recentSale.year" ng-options="n for n in [] | range:2000:{{year}}"></select>
+					</div>
+					<div class="col-sm-1"> </div>
+					<div class="col-sm-5"><input type="number" class="form-control"  ng-model="recentSale.sales" name="recentSalesNumber"></div>
+				</div>
+				<br>
+				<button class="btn btn-primary" ng-click="addNewChoice()">添加年份</button>
+				<br>
+
+			<br>
+			
+				<div class="error" ng-show="form.$submitted || form.recentSalesYear.$touched">
+				<div class="error" ng-show="form.recentSalesYear.$error.number">请输入正确的年份</div>
+				<div ng-show="!recentSaleInput()">请输入成交数量</div>
+				<div ng-show="!duplicateYear()">不能输入重复的年份</div>
+				</div>
+				<div class="error" ng-show="form.$submitted || form.recentSalesNumber.$touched">
+				<div class="error" ng-show="form.recentSalesNumber.$error.number">请输入正确的成交量</div>
+				</div>
+			</div>
+
+		
+		
+		</div>
+		
+		<div class="col-sm-1">
+		
+		</div>
+		
+		<div class="col-sm-5">
+			
+			<div class="form-group">
+				<label>邮箱</label>
+
+				<span class="userInformation">{{profile.email}}</span>
+			</div>
+
+			<div class="form-group">
+				<label>取得经纪人执照号码　*</label>
+
+				<input type="text" name="licenseID" class="form-control"  placeholder="请输入您经纪人执照号码　比如: GL20081234567" ng-model="profile.licenseID" required/>
+
+				<div class="error" ng-show="form.$submitted || form.licenseID.$touched">
+				<div ng-show="form.licenseID.$error.required">请输入您经纪人执照号码</div>
+				</div>
+				
+			</div>
+			
+			<div class="form-group">
+				<label>取得经纪人执照年份　*</label>
+
+				<input type="number" name="licenseYear" class="form-control"  placeholder="请输入您取得执照的年份　比如: 2008" ng-model="profile.licenseYear" min=1960 max={{year}} required/>
+
+				<div class="error" ng-show="form.$submitted || form.licenseYear.$touched">
+				<div ng-show="form.licenseYear.$error.required">请输入您取得经纪人执照的年份</div>
+				<div class="error" ng-show="form.licenseYear.$error.number || form.licenseYear.$error.min || form.licenseYear.$error.max">请输入正确的年份</div>
+				</div>
+				
+			</div>
+			
+			<div class="form-group">
+				<label>从业时间</label>
+
+				<span class="userInformation" ng-show="profile.licenseYear" >{{getCareerYear()}} 年</span>
+
+			</div>
+		
+			<div class="form-group">
+				<label>经纪人公司</label>
+
+				<input type="text" name="businessName" class="form-control"  placeholder="请输入您的公司名称　比如: Coldwell Banker" ng-model="profile.businessName" ng-minlength="3" required/>
+			</div>
+		
+			<div class="form-group">
+				<label>办公室电话</label>
+
+				<input type="text" name="businessPhone" class="form-control" placeholder="请输入您的办公室电话　比如: 206-888-8888" ng-model="profile.businessPhone" ng-pattern="phonePattern" />
+				
+				<div class="error" ng-show="form.$submitted || form.businessPhone.$touched">
+                <div ng-show="form.businessPhone.$error.pattern">请输入正确的电话号码格式</div>
+				</div>
+			</div>
+		
+			<div class="form-group">
+				<label>办公室地址</label><br>
+				
+				<div class="row verticalSpace" style="padding: 10px 0;">
+					<div class="col-sm-3">第一行</div>	
+					<div class="col-sm-9">
+						<input type="text" name="businessAddress" class="form-control" placeholder="请输入办公室地址　比如: 801 8th Ave NE" ng-model="profile.businessAddress.line1"/>
+					</div>			
+				</div>	
+				
+				<div class="row verticalSpace">
+					<div class="col-sm-3">第二行</div>	
+					<div class="col-sm-9">
+						<input type="text" name="businessAddress" class="form-control" placeholder="请输入办公室门牌号　比如: suite 200" ng-model="profile.businessAddress.line2"/>
+					</div>			
+				</div>	
+
+				<div class="row verticalSpace">
+					<div class="col-sm-2">城市</div>	
+					<div class="col-sm-4">
+						<input type="text" name="businessAddress" class="form-control" placeholder="请输入城市" ng-model="profile.businessAddress"/>
+					</div>
+					<div class="col-sm-2">州</div>	
+					<div class="col-sm-4">
+						<input type="text" name="businessAddress" class="form-control" placeholder="请输入州名" ng-model="profile.businessAddress"/>
+					</div>						
+				</div>					
+
+				<div class="row verticalSpace">
+					<div class="col-sm-2">邮编</div>	
+					<div class="col-sm-4">
+						<input type="text" name="businessAddress" class="form-control"  placeholder="请输入邮编" ng-model="profile.businessAddress"/>
+					</div>	
+					<div class="col-sm-2">国家</div>	
+					<div class="col-sm-4">
+						<input type="text" name="businessAddress" class="form-control" placeholder="请输入国家" ng-model="profile.businessAddress"/>
+					</div>						
+				</div>	
+
+			</div>
+		
+
+		
+		</div>
+	</div>
+	
+	<br>
+	
+	<div class="row"  style="padding-left:40%">
+	    <p class="help-block"> {{ message }} </p>
+        <button class="btn btn-lg btn-primary" type="submit">保存修改</button>
+		<span class="spacer">* 必填信息</span>
+	</div>	
+	
+    </form>
+    
+  </div>
+</div>
